@@ -1,6 +1,6 @@
 config.py
 config_creator.py
-config_data.py
+config_data
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
