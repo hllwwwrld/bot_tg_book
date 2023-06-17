@@ -1,7 +1,10 @@
-BOOK_PATH = 'C:/Users/chaps/Desktop/important/stepik/tg_bot_py/bot_book/book/book.txt'
+import os
+
+
+BOOK_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'book', 'book.txt')
 PAGE_SIZE = 1050
 
-book: dict[int, str] = {}
+book_prepared: dict[int, str] = {}
 
 
 # Функция, возвращающая строку с текстом страницы и ее размер
@@ -27,10 +30,8 @@ def prepare_book(path: str) -> None:
         for page in range((len(book_string) // PAGE_SIZE) + 1):
             temp_page, gotten_part = _get_part_text(book_string, gotten_parts_sum, PAGE_SIZE)
             gotten_parts_sum += gotten_part
-            book[page + 1] = temp_page.lstrip()
+            book_prepared[page + 1] = temp_page.lstrip()
 
 
 # Вызов функции prepare_book для подготовки книги из
 prepare_book(BOOK_PATH)
-
-print(book)
