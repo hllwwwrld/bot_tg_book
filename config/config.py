@@ -1,10 +1,11 @@
 import configparser
+import os
 
 from aiogram import Bot, Dispatcher
 
 
 config = configparser.ConfigParser()
-config.read('C:/Users/chaps/Desktop/important/stepik/tg_bot_py/bot_book/config/config_data')
+config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'config_data'))
 
 
 class BotConfig:
