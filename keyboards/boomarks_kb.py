@@ -5,13 +5,13 @@ from lexicon.lexicon import LEXICON
 from services.file_handilng import book_prepared
 
 
-def create_bookmarks_keyboard(*args: int) -> InlineKeyboardMarkup:
+def create_bookmarks_keyboard(bookmarks: set[int]) -> InlineKeyboardMarkup:
     kb_builder: InlineKeyboardBuilder = InlineKeyboardBuilder()
 
-    for button in sorted(args):
+    for bookmark_page in sorted(bookmarks):
         bookmark_button = InlineKeyboardButton(
-            text=f'{button} - {book_prepared[button][:100]}',
-            callback_data=str(button))
+            text=f'{bookmark_page} - {book_prepared[bookmark_page][:100]}',
+            callback_data=str(bookmark_page))
         kb_builder.row(bookmark_button)
 
     bookmarks_edit_cancel_buttons = [
@@ -23,13 +23,13 @@ def create_bookmarks_keyboard(*args: int) -> InlineKeyboardMarkup:
     return kb_builder.as_markup()
 
 
-def create_edit_keyboard(*args: int) -> InlineKeyboardMarkup:
+def create_edit_keyboard(bookmarks: set[int]) -> InlineKeyboardMarkup:
     kb_builder: InlineKeyboardBuilder = InlineKeyboardBuilder()
 
-    for button in sorted(args):
+    for bookmark_page in sorted(bookmarks):
         cancel_bookmark_button = InlineKeyboardButton(
-            text=f'{LEXICON["del"]} {button} - {book_prepared[button][:100]}',
-            callback_data=f'{button}del')
+            text=f'{LEXICON["del"]} {bookmark_page} - {book_prepared[bookmark_page][:100]}',
+            callback_data=f'{bookmark_page}del')
 
         kb_builder.row(cancel_bookmark_button)
 
