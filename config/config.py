@@ -14,5 +14,3 @@ class BotConfig:
         self.admin_ids: list[int] = list(map(int, config.get('BotBook', 'admin_ids').split(',')))
         self.bot: Bot = Bot(token=self.token, parse_mode='HTML')
         self.ds = Dispatcher()
-
-
