@@ -29,8 +29,8 @@ def create_edit_keyboard(*args: int) -> InlineKeyboardMarkup:
     for button in sorted(args):
         cancel_bookmark_button = InlineKeyboardButton(
             text=f'{LEXICON["del"]} {button} - {book_prepared[button][:100]}',
-            callback_data=f'{button}del'
-        )
+            callback_data=f'{button}del')
+
         kb_builder.row(cancel_bookmark_button)
 
     bookmarks_edit_cancel_buttons = InlineKeyboardButton(text=LEXICON['cancel'], callback_data='cancel')
